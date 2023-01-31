@@ -2,30 +2,26 @@ package com.example.plantshandbook
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.plantshandbook.databinding.PlantItemBinding
 
-class PlantAdapter : RecyclerView.Adapter<PlantAdapter.PlantHolder>() {
+class PlantAdapter : RecyclerView.Adapter<PlantViewHolder>() {
 
     private val plantList = ArrayList<Plant>()
 
-    class PlantHolder(item: View) : RecyclerView.ViewHolder(item) {
-        private val binding = PlantItemBinding.bind(item)
-        fun bind(plant: Plant) = with(binding) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = PlantItemBinding.inflate(inflater, parent, false)
+        return PlantViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
+        val plant = plantList[position]
+        with(holder.binding) {
             ivPlants.setImageResource(plant.imageId)
             tvTitle.text = plant.title
         }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.plant_item, parent, false)
-        return PlantHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: PlantHolder, position: Int) {
-        holder.bind(plantList[position])
     }
 
     override fun getItemCount(): Int = plantList.size
