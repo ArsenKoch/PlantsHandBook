@@ -1,5 +1,6 @@
 package com.example.plantshandbook
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,17 +9,14 @@ import com.example.plantshandbook.databinding.PlantItemBinding
 
 class PlantAdapter : RecyclerView.Adapter<PlantAdapter.PlantHolder>() {
 
-    val plantList = ArrayList<Plant>()
+    private val plantList = ArrayList<Plant>()
 
     class PlantHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = PlantItemBinding.bind(item)
         fun bind(plant: Plant) = with(binding) {
-            im.setImageResource(plant.imageId)
+            ivPlants.setImageResource(plant.imageId)
             tvTitle.text = plant.title
-
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantHolder {
@@ -28,12 +26,12 @@ class PlantAdapter : RecyclerView.Adapter<PlantAdapter.PlantHolder>() {
 
     override fun onBindViewHolder(holder: PlantHolder, position: Int) {
         holder.bind(plantList[position])
-
     }
 
     override fun getItemCount(): Int = plantList.size
 
-    fun addPlant(plant: Plant){
+    @SuppressLint("NotifyDataSetChanged")
+    fun addPlant(plant: Plant) {
         plantList.add(plant)
         notifyDataSetChanged()
     }

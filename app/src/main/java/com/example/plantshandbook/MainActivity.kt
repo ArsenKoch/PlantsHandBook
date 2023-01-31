@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.plantshandbook.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private val adapter = PlantAdapter()
     private val imageIdList = listOf(
         R.drawable.plant_img, R.drawable.plant_img_1,
@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
         binding.apply {
-            rcVeiw.layoutManager = GridLayoutManager(this@MainActivity, 3)
-            rcVeiw.adapter = adapter
+            rvActivity.layoutManager = GridLayoutManager(this@MainActivity, 3)
+            rvActivity.adapter = adapter
             buttonAdd.setOnClickListener {
                 if(index > 4) index = 0
                 val plant = Plant(imageIdList[index],"Plant $index")
