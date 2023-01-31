@@ -3,15 +3,14 @@ package com.example.plantshandbook
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.plantshandbook.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private val adapter = PlantAdapter()
     private val imageIdList = listOf(
-        R.drawable.img, R.drawable.img_1,
-        R.drawable.img_2, R.drawable.img_3, R.drawable.img_4,
+        R.drawable.plant_img, R.drawable.plant_img_1,
+        R.drawable.plant_img_2, R.drawable.plant_img_3, R.drawable.plant_img_4,
     )
     private var index = 0
 
